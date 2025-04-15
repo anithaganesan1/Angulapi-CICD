@@ -1,0 +1,45 @@
+version: 0.2
+
+phases:
+
+  install:
+
+    runtime-versions:
+
+      nodejs: 17
+
+    commands:
+
+         -echo Installing source NPM dependencies…
+
+         -npm install -g @angular/cli@15.2.0
+
+         -npm install
+
+  build:
+
+    commands:
+
+        -echo Build started for $BUILD_ENV on `date`
+
+        -npm run build
+
+        -echo Build completed…
+
+  post build:
+
+    commands:
+
+       -echo Pre-Build started on `date`
+
+       -aws s3 sync ./dist s3://$BUCKET_NAME
+
+       -echo Pre-Build completed on `date`
+
+artifacts:
+
+  files:
+
+     dist/**/*
+
+  discard-paths: yes

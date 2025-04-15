@@ -93,7 +93,7 @@ this.form = this.formBuilder.group(
 
 //---
 }
-
+//this for git changes
 getcarlist(){
 this.http.get("https://localhost:7258/api/Categories").subscribe((res:any)=>{
   //this.http.get("https://localhost:7258/consume-multiple").subscribe((res:any)=>{

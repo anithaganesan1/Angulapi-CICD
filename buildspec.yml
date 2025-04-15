@@ -1,4 +1,5 @@
 version: 0.1
+
 environment_variables:
     plaintext:
         S3_BUCKET: "mediafiles-bucket11"

@@ -1,4 +1,5 @@
 export const environment = {
-    API_URL:'https://localhost:7258/api/Categories'
+    API_URL:'https://localhost:7258/api/Categories',
 
+    VERSION:"V1"
 };

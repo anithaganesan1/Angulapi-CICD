@@ -1,45 +1,25 @@
-version: 0.2
+version: 0.1
 
+environment_variables:
+    plaintext:
+        S3_BUCKET: "mediafiles-bucket11"
+        BUILD_ENV: "prod"
 phases:
-
-  install:
-
-    runtime-versions:
-
-      nodejs: 17
-
-    commands:
-
-         -echo Installing source NPM dependencies…
-
-         -npm install -g @angular/cli@17.0.0
-
-         -npm install
-
-  build:
-
-    commands:
-
-        -echo Build started for $BUILD_ENV on `date`
-
-        -npm run build
-
-        -echo Build completed…
-
-  post build:
-
-    commands:
-
-       -echo Pre-Build started on `date`
-
-       -aws s3 sync ./dist s3://$BUCKET_NAME
-
-       -echo Pre-Build completed on `date`
-
+    install:
+        commands:
+            - echo Installing source NPM dependencies...
+            - npm install
+            - npm install -g @angular/cli
+    build:
+        commands:
+            - echo Build started on `date`
+            - ng build 
+    post_build:
+         commands:
+            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - echo Build completed on `date`
 artifacts:
-
-  files:
-
-     dist/**/*
-
-  discard-paths: yes
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes

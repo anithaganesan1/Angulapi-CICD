@@ -1,0 +1,34 @@
+<div class="container">
+<app-alert [alertType]="'sucess'"></app-alert>
+<h1 class="mt-2">categorylist</h1>
+<div class="row pt-2">
+<a  href="/Categorylist/Categories/Add"  >Add category</a>
+<br>
+<a  href="/Categorylist/Categories/sampleadd"  >sample</a>
+
+<br>
+<a  href="/Categorylist/Categories/servicecall"  >sampleapi</a>
+
+@if(categorylists$ | async ;as categorylists)
+{
+
+    @if (categorylists.length > 0) {
+        @for (item of categorylists; track $index)
+        {
+<p>{{item.name}}</p>
+<p>{{item.urlHandle}}</p>
+
+        }
+
+    }
+    @else
+{
+    <p>no details found....</p>
+
+}
+} 
+
+
+</div>
+
+</div>

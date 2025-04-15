@@ -1,0 +1,15 @@
+<div class="row">
+    @for (item of carlist; track $index){
+
+        <div class="col-4">
+        <div class="card">
+            <h4 class="card-body"></h4>
+            <p class="card-title">{{item.id}}</p>
+            <p class="card-text">{{item.name}}</p>
+            <a href="#" class="card-link">{{item.urlHandle}}</a>
+
+        </div>
+    </div>
+        
+    }
+</div>

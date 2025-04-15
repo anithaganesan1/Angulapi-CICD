@@ -1,0 +1,51 @@
+
+<P></P>
+
+<div class="items">
+    <ul>
+        <button class="btn btn-primary mx-2" *ngFor="let btv of players"> {{btv.urlHandle}},{{btv.name |Name |uppercase}}</button>
+
+
+
+    </ul>
+      <ul>
+      <button class="btn btn-primary mx-2" *ngFor="let t of teams"> {{t.city}} {{t.address}}</button>
+
+      </ul>
+  </div>
+  <div>
+    <button appBtn>My Button</button>
+
+
+    <button (click)="getcarlist()" >Load Players</button>
+    <button (click)="loadTeams()">Load Teams</button>
+  </div>
+  <!-- subscription to loading observable >
+    <div class="loading" *ngIf="loading$ | async">
+      <h1>Please wait...</h1>
+    </div>-->
+
+    <div>
+    <button type="button" (click)="loadTeams()">Get user details</button>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of teams;">
+          <td>{{product.name}}</td>
+          <td>{{product.city}}</td>
+          <td>{{product.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br /><br />

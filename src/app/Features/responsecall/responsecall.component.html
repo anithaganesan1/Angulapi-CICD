@@ -1,0 +1,181 @@
+
+<!--<p>{{carlist | json}}</p>-->
+<div class="col-12">
+@if(isloader==true){
+<div class="col-12 text-center">
+    <div class="spinner-border text-muted"></div>
+    <div class="spinner-border text-primary"></div>
+    <div class="spinner-border text-success"></div>
+    <div class="spinner-border text-info"></div>
+    <div class="spinner-border text-warning"></div>
+    <div class="spinner-border text-danger"></div>
+    <div class="spinner-border text-secondary"></div>
+    <div class="spinner-border text-dark"></div>
+    <div class="spinner-border text-light"></div>
+    
+</div>
+}
+@else {
+    <table class="table table-bordered">
+
+        <thead>
+            <tr class="text-center md-3">list of category-{{currentDate |date:'dd-MM-yyyy'}}</tr>
+            <tr class=" text-center text-danger">
+                search</tr>
+            <tr> 
+    <th>sr no</th>
+    <th>catgory name</th>
+    <th>url handler</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of carlist | paginate: { itemsPerPage: 5, currentPage: p }">
+
+                <td>{{item.id +1}}</td>
+                <td>{{item.name | uppercase}}</td>
+                <td>{{item.Title}}</td>
+                <td>{{item.Body}}</td>
+                <a class="nav-link" [routerLink]="'/Sampleadd'" routerLinkActive="active" >{{item.urlHandle |uppercase}}</a>
+                
+                </tr>
+
+                  </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="pageChangeEvent($event)" previousLabel="" nextLabel="" ></pagination-controls>
+
+}
+
+    </div>
+   <!----<div *ngIf="mydata$ | async; let item of mydata">hj
+        <span>
+        </span>
+      </div>-->
+      <div class="register-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              formControlName="fullname"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }"
+            />
+            @if (submitted && f['fullname'].errors) {
+            <div class="invalid-feedback">
+              @if (f['fullname'].errors['required']) {
+              <div>Fullname is required</div>
+              }
+            </div>
+            }
+          </div>
+      
+          <div class="form-group">
+            <label>Username</label>
+            <input
+              type="text"
+              formControlName="username"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+            />
+            @if (submitted && f['username'].errors) {
+            <div class="invalid-feedback">
+              @if (f['username'].errors['required']) {
+              <div>Username is required</div>
+              } @if (f['username'].errors['minlength']) {
+              <div>Username must be at least 6 characters</div>
+              } @if (f['username'].errors['maxlength']) {
+              <div>Username must not exceed 20 characters</div>
+              }
+            </div>
+            }
+          </div>
+      
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+            />
+            @if (submitted && f['email'].errors) {
+            <div class="invalid-feedback">
+              @if (f['email'].errors['required']) {
+              <div>Email is required</div>
+              } @if (f['email'].errors['email']) {
+              <div>Email is invalid</div>
+              }
+            </div>
+            }
+          </div>
+      
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+            />
+            @if (submitted && f['password'].errors) {
+            <div class="invalid-feedback">
+              @if (f['password'].errors['required']) {
+              <div>Password is required</div>
+              } @if (f['password'].errors['minlength']) {
+              <div>Password must be at least 6 characters</div>
+              } @if (f['password'].errors['maxlength']) {
+              <div>Username must not exceed 40 characters</div>
+              }
+            </div>
+            }
+          </div>
+      
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }"
+            />
+            @if (submitted && f['confirmPassword'].errors) {
+            <div class="invalid-feedback">
+              @if (f['confirmPassword'].errors['required']) {
+              <div>Confirm Password is required</div>
+              } @if (f['confirmPassword'].errors['matching']) {
+              <div>Confirm Password does not match</div>
+              }
+            </div>
+            }
+          </div>
+      
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              formControlName="acceptTerms"
+              class="form-check-input"
+              [ngClass]="{ 'is-invalid': submitted && f['acceptTerms'].errors }"
+            />
+            <label for="acceptTerms" class="form-check-label"
+              >I have read and agree to the Terms</label
+            >
+            @if (submitted && f['acceptTerms'].errors) {
+            <div class="invalid-feedback">Accept Terms is required</div>
+            }
+          </div>
+      
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button
+              type="button"
+              (click)="onReset()"
+              class="btn btn-warning float-right"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+      

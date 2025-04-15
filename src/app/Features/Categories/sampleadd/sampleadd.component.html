@@ -1,0 +1,31 @@
+
+<div class="col-4" *ngFor ="let item of carlist">{{item.name}}</div>
+
+<!--<li *ngFor="let user of carlist; index as i; first as isFirst">
+    {{i}}/{{carlist.length}}. {{user.name}} <span *ngIf="isFirst">default</span>
+  </li>-->
+  <div>
+    <select><option *ngFor="let drop of carlist" [value]="drop.id">{{drop.name}}</option></select>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-primary mx-2" *ngFor="let btv of carlist"> {{btv.name}}</button>
+    </div>
+    <div class="col-12">
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+<th>sr no</th>
+<th>catgory name</th>
+<th>url handler</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let bdy of carlist;let srno=index">
+                <td>{{srno +1}}</td>
+                <td>{{bdy.name}}</td>
+                <td>{{bdy.urlHandle}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

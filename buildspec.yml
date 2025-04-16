@@ -16,11 +16,10 @@ phases:
     build:
         commands:
             - echo Build started on `date`
-            - ng build 
             - node -v
             - npm -v
+            - ng build
     displayName: 'Check Node/NPM Versions'
-
     post_build:
          commands:
             - aws s3 cp dist s3://${S3_BUCKET} --recursive

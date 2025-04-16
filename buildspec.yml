@@ -9,12 +9,23 @@ phases:
         commands:
             - echo Installing source NPM dependencies...
             - npm install
-            - npm install -g @angular/cli
+            - npm install -g @angular/cli@17.3.11
+    displayName: 'Install Dependencies'
+
+
     build:
         commands:
             - echo Build started on `date`
             - ng build 
-    
+            - node -v
+            - npm -v
+    displayName: 'Check Node/NPM Versions'
+
+    post_build:
+         commands:
+            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - echo Build completed on `date`
+
 artifacts:
     files:
         - '**/*'

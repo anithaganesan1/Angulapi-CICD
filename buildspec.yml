@@ -9,7 +9,7 @@ phases:
         commands:
             - echo Installing source NPM dependencies...
             - npm install
-            - npm install -g @angular/cli@17.3.11
+            - npm install -g @angular/cli
     displayName: 'Install Dependencies'
 
 
